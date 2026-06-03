@@ -158,3 +158,64 @@ ALTER TABLE Habitaciones
     ADD CONSTRAINT FK_Habitaciones_Pacientes
     FOREIGN KEY (paciente_id) REFERENCES Pacientes(paciente_id);
 GO
+
+ALTER TABLE Pacientes
+    ADD telefono VARCHAR(20) NULL;
+GO
+ 
+ALTER TABLE Pacientes
+    ADD direccion VARCHAR(200) NULL;
+GO
+ 
+ALTER TABLE Pacientes
+    ADD genero CHAR(1) NULL;
+GO
+ 
+ALTER TABLE Pacientes
+    ADD tipo_sangre VARCHAR(5) NULL;
+GO
+ 
+ALTER TABLE Pacientes
+    ADD fecha_nacimiento DATE NULL;
+GO
+ 
+ALTER TABLE Pacientes
+    ALTER COLUMN nombre VARCHAR(150) NOT NULL;
+GO
+ 
+ALTER TABLE Pacientes
+    ALTER COLUMN direccion VARCHAR(300) NULL;
+GO
+ 
+ALTER TABLE Medicos
+    ADD experiencia INT NULL;
+GO
+ 
+ALTER TABLE Medicos
+    ADD turno VARCHAR(20) NULL;
+GO
+ 
+ALTER TABLE Medicos
+    ADD observaciones VARCHAR(500) NULL;
+GO
+ 
+ALTER TABLE Medicos
+    DROP COLUMN observaciones;
+GO
+ 
+ALTER TABLE Citas
+    ADD estado VARCHAR(20) NULL;
+GO
+ 
+ALTER TABLE Citas
+    ADD costo_consulta FLOAT NULL;
+GO
+ 
+ALTER TABLE Citas
+    ALTER COLUMN costo_consulta DECIMAL(10,2) NULL;
+GO
+ 
+ALTER TABLE Habitaciones
+    ADD disponibilidad BIT NOT NULL DEFAULT 1;
+GO
+ 
