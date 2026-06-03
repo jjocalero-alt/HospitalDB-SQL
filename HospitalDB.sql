@@ -219,3 +219,106 @@ ALTER TABLE Habitaciones
     ADD disponibilidad BIT NOT NULL DEFAULT 1;
 GO
  
+-- 1. Eliminar una tabla temporal
+CREATE TABLE Temporal (
+    id   INT          NOT NULL,
+    dato VARCHAR(100) NULL
+);
+GO
+ 
+DROP TABLE Temporal;
+GO
+ 
+-- 2. Eliminar una restricción CHECK
+ALTER TABLE Pacientes
+    ADD CONSTRAINT CHK_Pacientes_Genero CHECK (genero IN ('M', 'F', 'O'));
+GO
+ 
+ALTER TABLE Pacientes
+    DROP CONSTRAINT CHK_Pacientes_Genero;
+GO
+ 
+-- 3. Eliminar una restricción UNIQUE
+ALTER TABLE Pacientes
+    ADD CONSTRAINT UQ_Pacientes_Telefono UNIQUE (telefono);
+GO
+ 
+ALTER TABLE Pacientes
+    DROP CONSTRAINT UQ_Pacientes_Telefono;
+GO
+ 
+-- 4. Eliminar una columna
+ALTER TABLE Pacientes
+    ADD columna_prueba VARCHAR(50) NULL;
+GO
+ 
+ALTER TABLE Pacientes
+    DROP COLUMN columna_prueba;
+GO
+ 
+-- 5. Eliminar una tabla de pruebas
+CREATE TABLE TablaPrueba (
+    id          INT          NOT NULL,
+    descripcion VARCHAR(100) NULL
+);
+GO
+ 
+DROP TABLE TablaPrueba;
+GO
+ 
+-- 6. Crear y eliminar una tabla Auditoria
+CREATE TABLE Auditoria (
+    auditoria_id INT          NOT NULL,
+    accion       VARCHAR(100) NULL,
+    fecha        DATETIME     NULL
+);
+GO
+ 
+DROP TABLE Auditoria;
+GO
+ 
+-- 7. Crear y eliminar una tabla Logs
+CREATE TABLE Logs (
+    log_id   INT          NOT NULL,
+    mensaje  VARCHAR(255) NULL,
+    fecha    DATETIME     NULL
+);
+GO
+ 
+DROP TABLE Logs;
+GO
+ 
+-- 8. Eliminar una FOREIGN KEY
+ALTER TABLE Habitaciones
+    ADD CONSTRAINT FK_Habitaciones_Prueba
+    FOREIGN KEY (paciente_id) REFERENCES Pacientes(paciente_id);
+GO
+ 
+ALTER TABLE Habitaciones
+    DROP CONSTRAINT FK_Habitaciones_Prueba;
+GO
+ 
+ALTER TABLE Habitaciones
+    ADD CONSTRAINT FK_Habitaciones_Pacientes
+    FOREIGN KEY (paciente_id) REFERENCES Pacientes(paciente_id);
+GO
+ 
+-- 9. Eliminar una tabla MedicamentosPrueba
+CREATE TABLE MedicamentosPrueba (
+    medicamento_id INT          NOT NULL,
+    nombre         VARCHAR(100) NULL
+);
+GO
+ 
+DROP TABLE MedicamentosPrueba;
+GO
+ 
+-- 10. Eliminar una base de datos de pruebas
+CREATE DATABASE HospitalDB_Prueba;
+GO
+ 
+USE HospitalDB;
+GO
+ 
+DROP DATABASE HospitalDB_Prueba;
+GO
